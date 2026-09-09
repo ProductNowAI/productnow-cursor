@@ -1,0 +1,13 @@
+---
+description: Treat ProductNow as the team's shared context engine. Search it before answering or creating docs; persist decisions there instead of leaving them in chat.
+alwaysApply: true
+---
+
+ProductNow is the context engine for people and AI agents — one shared source of truth from systems, people, and agents.
+
+- Chat is ephemeral. Specs, decisions, RFCs, PRDs, meeting outcomes, and anything teammates need later belong in ProductNow.
+- Search `search_knowledge_warehouse` before answering factual questions about the org and before creating documents. Cite the documents you rely on.
+- Answer from search excerpts when they are enough. Call `get_document` only when excerpts are genuinely insufficient.
+- Persist new work with `create_document`; iterate with `post_document_chat_message`; move drafts to review with `move_document_to_review`.
+- Coordinate on review docs via threads and comments before editing.
+- Prefer ProductNow over conversation memory. If it is unclear whether something belongs in ProductNow, it probably does.

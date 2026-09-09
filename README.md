@@ -1,34 +1,53 @@
-# Cursor plugin template
+# ProductNow
 
-Build and publish Cursor Marketplace plugins from a single repo.
+**Answers you can act on. Actions you can trust.**
 
-Two starter plugins are included:
+The context engine for people and AI agents.
 
-- **starter-simple**: rules and skills only
-- **starter-advanced**: rules, skills, agents, commands, hooks, MCP, and scripts
+This Cursor plugin connects the agent to ProductNow’s hosted MCP server so it can search shared organizational context, persist decisions as documents, and take governed actions as the signed-in user.
 
-## Getting started
+## Why ProductNow
 
-[Use this template](https://github.com/cursor/plugin-template/generate) to create a new repository, then customize:
+Organizational context has become a big data problem of its own: volume, velocity, variety, and veracity. Decisions, chats, commits, tickets, and meetings pile up faster than anyone can reconcile them, in incompatible systems, and most of it goes stale the moment it is written.
 
-1. `.cursor-plugin/marketplace.json`: set marketplace `name`, `owner`, and `metadata`.
-2. `plugins/*/.cursor-plugin/plugin.json`: set `name` (lowercase kebab-case), `displayName`, `author`, `description`, `keywords`, `license`, and `version`.
-3. Replace placeholder rules, skills, agents, commands, hooks, scripts, and logos.
+ProductNow continuously captures, reconciles, and organizes that context from every system, human, and agent into one shared source of truth, represented as approachable documents anyone (or any agent) can read, write, and edit. From that shared context engine, answers are grounded in evidence, agents can reason across the company, and governed actions can write back into systems of record.
 
-To add more plugins, see `docs/add-a-plugin.md`.
+One shared source of truth from all your systems, people, and agents, so you can act with confidence.
 
-## Single plugin vs multi-plugin
+## What this plugin includes
 
-This template defaults to **multi-plugin** (multiple plugins in one repo).
+- **MCP server** — remote Streamable HTTP at `https://api.productnow-prod.com/mcp`
+- **Skill** — when and how to search, persist, and coordinate through ProductNow tools
+- **Rule** — treat ProductNow as the team’s context engine; chat is ephemeral
 
-For a **single plugin**, move your plugin folder contents to the repository root, keep one `.cursor-plugin/plugin.json`, and remove `.cursor-plugin/marketplace.json`.
+The ProductNow application itself is hosted. This repository packages Cursor plugin metadata and agent guidance only.
 
-## Submission checklist
+## Install
 
-- Each plugin has a valid `.cursor-plugin/plugin.json`.
-- Plugin names are unique, lowercase, and kebab-case.
-- `.cursor-plugin/marketplace.json` entries map to real plugin folders.
-- All frontmatter metadata is present in rule, skill, agent, and command files.
-- Logos are committed and referenced with relative paths.
-- `node scripts/validate-template.mjs` passes.
-- Repository link is ready for submission to the Cursor team (Slack or `kniparko@anysphere.com`).
+Install from the Cursor Marketplace, or test locally:
+
+```bash
+ln -s /path/to/this-repo ~/.cursor/plugins/local/productnow
+```
+
+Then reload the window and enable the plugin in **Customize**. On first connection, complete the browser OAuth sign-in. There is no API key to paste. Required scope: `mcp:use`.
+
+## Authentication
+
+| | |
+| --- | --- |
+| Endpoint | `https://api.productnow-prod.com/mcp` |
+| Transport | Streamable HTTP |
+| Auth | OAuth 2.0 (Auth0) via protected-resource discovery |
+| App | [app.productnow.ai](https://app.productnow.ai) |
+| Website | [productnow.ai](https://productnow.ai) |
+
+Tool calls run as the authenticated ProductNow user and go through normal workspace, document, and comment permissions.
+
+## After you connect
+
+Ask the agent to search ProductNow first (`search_knowledge_warehouse`) for org questions, specs, and decisions. Persist anything that should outlive this chat with `create_document` or `post_document_chat_message`. Confirm write actions before they run.
+
+## Support
+
+`support@productnow.ai`
