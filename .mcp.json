@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "productnow": {
+      "url": "https://api.productnow-prod.com/mcp",
+      "auth": {
+        "CLIENT_ID": "tpc_3ojsDzXsprU2P71r4h87wH"
+      }
+    }
+  }
+}
