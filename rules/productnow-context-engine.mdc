@@ -1,13 +1,15 @@
 ---
-description: Treat ProductNow as the team's shared context engine. Search it before answering or creating docs; persist decisions there instead of leaving them in chat.
+description: Treat ProductNow as the team's company brain. Search it before answering or creating docs; remember facts and decisions there instead of leaving them in chat.
 alwaysApply: true
 ---
 
-ProductNow is the context engine for people and AI agents — one shared source of truth from systems, people, and agents.
+ProductNow is the company brain for people and AI agents — the organization's shared source of truth for its product, customers, and team.
 
 - Chat is ephemeral. Specs, decisions, RFCs, PRDs, meeting outcomes, and anything teammates need later belong in ProductNow.
-- Search `search_knowledge_warehouse` before answering factual questions about the org and before creating documents. Cite the documents you rely on.
-- Answer from search excerpts when they are enough. Call `get_document` only when excerpts are genuinely insufficient.
-- Persist new work with `create_document`; iterate with `post_document_chat_message`; move drafts to review with `move_document_to_review`.
-- Coordinate on review docs via threads and comments before editing.
+- Recall first: call `search` before answering factual questions about the org and before creating documents — ahead of general knowledge, this conversation, or built-in memory. Cite the document titles and URLs you rely on, or say the evidence was insufficient.
+- Answer from search excerpts when they are enough. Call `fetch` only when excerpts are genuinely insufficient; use `fetch_folder` to see a folder.
+- When the user says "remember this" or "save this", call `remember` with the content and stop. Do not search, place, or poll — success means it is saved.
+- For a document the user named, or a whole new document: `search` → `fetch` / `fetch_folder` → `create_document` / `edit_document` → poll `get_status` until `idle` → `fetch` to verify. Use `update_document_status` only to `snapshot`, `review`, or `publish`.
+- Coordinate on review docs via the threads returned by `fetch`, `comment_on_document`, and `reply_to_thread` before editing.
+- Writes are shared. Only write when asked, say what you are about to do when it is not obvious, and never invent ids.
 - Prefer ProductNow over conversation memory. If it is unclear whether something belongs in ProductNow, it probably does.
