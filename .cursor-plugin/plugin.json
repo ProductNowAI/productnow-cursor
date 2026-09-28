@@ -1,8 +1,8 @@
 {
   "name": "productnow",
   "displayName": "ProductNow",
-  "version": "1.0.0",
-  "description": "The context engine for people and AI agents. Answers you can act on. Actions you can trust.",
+  "version": "1.1.0",
+  "description": "Your team's company brain for people and AI agents. Answers you can act on. Actions you can trust.",
   "author": {
     "name": "ProductNow",
     "email": "support@productnow.ai"
@@ -11,7 +11,7 @@
   "license": "MIT",
   "keywords": [
     "mcp",
-    "context-engine",
+    "company-brain",
     "knowledge",
     "documents",
     "oauth",
